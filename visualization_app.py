@@ -21,7 +21,7 @@ if st.checkbox("Show raw data"):
 st.divider()
 
 # --- Chart 1: Top 10 Towns by Hotels ---
-st.subheader("🏙️ Top 10 Towns by Number of Hotels")
+st.subheader("Top Towns by Number of Hotels")
 selected_n = st.slider("Select number of towns to display", 5, 20, 10)
 hotels = (
     df.groupby("Town")["Total number of hotels"]
@@ -250,6 +250,7 @@ st.markdown("""
 This treemap shows how hotels are distributed among regions, with color indicating number of restaurants.  
 You can quickly spot which regions dominate and which are underrepresented.
 """)
+
 
 
 
