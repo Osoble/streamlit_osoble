@@ -15,7 +15,7 @@ df["refArea"] = df["refArea"].apply(lambda x: x.split("/")[-1] if isinstance(x, 
 
 # --- Show Raw Data Checkbox ---
 if st.checkbox("Show raw data"):
-    st.subheader("📄 Raw data preview")
+    st.subheader("Raw data preview")
     st.dataframe(df)
 
 st.divider()
@@ -158,13 +158,8 @@ selected_towns = st.sidebar.multiselect(
     default=all_towns
 )
 
-min_index, max_index = int(df["Tourism Index"].min()), int(df["Tourism Index"].max())
-selected_range = st.sidebar.slider(
-    "Select Tourism Index Range",
-    min_value=min_index,
-    max_value=max_index,
-    value=(min_index, max_index)
-)
+#-----------------
+#-------
 
 # --- Apply Filters ---
 filtered_df = df[
@@ -250,6 +245,7 @@ st.markdown("""
 This treemap shows how hotels are distributed among regions, with color indicating number of restaurants.  
 You can quickly spot which regions dominate and which are underrepresented.
 """)
+
 
 
 
