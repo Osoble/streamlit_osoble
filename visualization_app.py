@@ -4,7 +4,7 @@ import plotly.express as px
 
 # --- Page Setup ---
 st.set_page_config(page_title="Tourism Analysis Dashboard", layout="wide")
-st.title("🏨 Tourism Infrastructure Dashboard")
+st.title("Tourism Infrastructure Dashboard")
 
 # --- Load Dataset ---
 df = pd.read_csv("551015b5649368dd2612f795c2a9c2d8_20240902_115953.csv")
@@ -250,5 +250,6 @@ st.markdown("""
 This treemap shows how hotels are distributed among regions, with color indicating number of restaurants.  
 You can quickly spot which regions dominate and which are underrepresented.
 """)
+
 
 
