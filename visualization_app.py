@@ -6,6 +6,20 @@ import plotly.express as px
 st.set_page_config(page_title="Tourism Analysis Dashboard", layout="wide")
 st.title("Tourism Infrastructure Dashboard")
 
+
+st.markdown("""
+
+
+This dashboard provides an interactive overview of **tourism infrastructure across the districts of Lebanon (excluding Beirut)**.
+
+It uses official tourism data to explore:
+
+- **Number of hotels** available per town
+- **Restaurant availability** (whether towns have restaurants or not)
+- **Tourism Index** (a measure of attractiveness) for each town
+
+""")
+
 # --- Load Dataset ---
 df = pd.read_csv("551015b5649368dd2612f795c2a9c2d8_20240902_115953.csv")
 
@@ -21,8 +35,8 @@ if st.checkbox("Show raw data"):
 
 st.divider()
 
-# --- Chart 1: Top 10 Towns by Hotels ---
-st.subheader("Top 10 Towns by Number of Hotels")
+# --- Chart 1: Towns Ranked by Number of Hotels ---
+st.subheader("Towns Ranked by Number of Hotels")
 selected_n = st.slider("Select number of towns to display", 5, 20, 10)
 hotels = (
     df.groupby("Town")["Total number of hotels"]
@@ -48,7 +62,7 @@ Adjust the slider above to explore more or fewer towns.
 
 st.divider()
 
-# --- Chart 3: Restaurant Availability Pie Chart ---
+# --- Chart 2: Restaurant Availability Pie Chart ---
 st.subheader("Restaurant Availability Distribution")
 
 # Use a single column layout to control width
@@ -82,9 +96,9 @@ st.markdown(f"""
 You selected **{restaurant_filter.lower()}**.  
 This shows the share of towns that have restaurants vs. those that don't.
 """)
-
+st.divider()
 #-----------------------------
-# Bubble Chart: Tourism Index vs Hotels
+# Chart 3: Bubble Chart: Tourism Index vs Hotels
 chart_df = df[(df["Total number of hotels"] > 0) | (df["Total number of restaurants"] > 0)]
 
 st.subheader("Select Regions for Bubble Chart")
@@ -145,7 +159,8 @@ if not chart_df.empty:
     - Currently selected towns have an **average Tourism Index of {avg_tourism:.2f}**  
     - Average number of hotels per town: **{avg_hotels:.1f}**  
     - Town with the most hotels in this view: **{town_max_hotels} ({max_hotels_value} hotels)**  
-    - Bubble size reflects restaurants — large bubbles indicate towns with more food infrastructure.
+    - Bubble size reflects restaurants, large bubbles indicate towns with more food infrastructure.
     """)
 else:
     st.info("No towns match the current selection — adjust filters above to see results.")
+
